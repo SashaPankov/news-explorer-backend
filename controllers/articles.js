@@ -6,7 +6,7 @@ const HTTPNotFound = require("../utils/httpnotfound");
 
 module.exports.getArticles = (req, res, next) => {
   article
-    .find({}, { owner: 0 })
+    .find({ owner: req.user._id }, { owner: 0 })
     .then((articles) => res.send({ data: articles }))
     .catch(next);
 };
